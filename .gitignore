@@ -21,6 +21,8 @@
 #Quitar/permitir algunos tipos de archivos específicos
 ResTouch/*.exe
 ResTouch/*.zip
+ResTouch/*.rar
+ResTouch/*.RAR
 ResTouch/*.BAK
 ResTouch/*.pdf
 ResTouch/*.html
