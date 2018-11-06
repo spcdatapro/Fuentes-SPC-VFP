@@ -1,0 +1,19 @@
+CLEAR
+
+LOCAL lxml
+LOCAL lvar
+	lxml = ""
+	lvar = "C/F     "
+
+TEXT TO lxml ADDITIVE TEXTMERGE NOSHOW PRETEXT 7
+	<NIT><<ALLTRIM(lvar)>></NIT>
+ENDTEXT
+
+?lxml
+lvar = "    2"+CHR(13)
+
+TEXT TO lxml ADDITIVE TEXTMERGE NOSHOW PRETEXT 7
+	<<ALLTRIM(lvar)>>
+ENDTEXT
+
+?lxml

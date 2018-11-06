@@ -1,0 +1,23 @@
+10:58 a.m. 01/01/2008
+
+*
+Agregar las tablas :
+
+evento
+detalle_evento 
+
+crear relacion de evento.evento a detalle_evento.evento y activar eliminacion en cascada
+
+*
+agregar a la tabla comanda :
+
+evento n(1)
+no_evento integer
+
+agregar a la tabla subgrupo:
+
+tipo n(1)
+
+agregar a la tabla detalle_comnada:
+
+adicional n(1)

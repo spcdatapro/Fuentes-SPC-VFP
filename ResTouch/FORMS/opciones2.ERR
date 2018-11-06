@@ -1,0 +1,858 @@
+Picture = ..\bmps\fondo.jpg
+Error in line 11: Syntax error.
+Left = 19
+Error in line 24: Statement is not in a procedure.
+Height = 402
+Error in line 25: Statement is not in a procedure.
+Width = 374
+Error in line 26: Statement is not in a procedure.
+BorderStyle = 0
+Error in line 27: Statement is not in a procedure.
+Curvature = 50
+Error in line 28: Statement is not in a procedure.
+BackColor = 157,151,19
+Error in line 29: Syntax error.
+Name = "Shape1"
+Error in line 30: Statement is not in a procedure.
+Height = 49
+Error in line 32: Statement is not in a procedure.
+Left = 564
+Error in line 33: Statement is not in a procedure.
+Top = 204
+Error in line 34: Statement is not in a procedure.
+Width = 102
+Error in line 35: Statement is not in a procedure.
+BackColor = 192,192,192
+Error in line 36: Syntax error.
+Name = "Label2"
+Error in line 37: Statement is not in a procedure.
+Height = 580
+Error in line 39: Statement is not in a procedure.
+Left = 552
+Error in line 40: Statement is not in a procedure.
+Top = 36
+Error in line 41: Statement is not in a procedure.
+Width = 117
+Error in line 42: Statement is not in a procedure.
+BackColor = 128,128,0
+Error in line 43: Syntax error.
+Name = "Label1"
+Error in line 44: Statement is not in a procedure.
+Left = 30
+Error in line 46: Statement is not in a procedure.
+Width = 171
+Error in line 47: Statement is not in a procedure.
+Height = 80
+Error in line 48: Statement is not in a procedure.
+TabIndex = 11
+Error in line 49: Statement is not in a procedure.
+Name = "Boton8"
+Error in line 50: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 51: Syntax error.
+Image1.Height = 71
+Error in line 52: Statement is not in a procedure.
+Image1.Left = 8
+Error in line 53: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 54: Statement is not in a procedure.
+Image1.Width = 154
+Error in line 55: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 56: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 57: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 58: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 59: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 60: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 61: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 62: Statement is not in a procedure.
+Label1.Caption = "Anular Factura"
+Error in line 63: Statement is not in a procedure.
+Label1.Height = 60
+Error in line 64: Statement is not in a procedure.
+Label1.Left = 11
+Error in line 65: Statement is not in a procedure.
+Label1.Top = 9
+Error in line 66: Statement is not in a procedure.
+Label1.Width = 148
+Error in line 67: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 68: Statement is not in a procedure.
+DO FORM anula
+Error in line 70: Statement is not in a procedure.
+ENDPROC
+Error in line 71: Nesting error.
+Left = 141
+Error in line 74: Statement is not in a procedure.
+Width = 129
+Error in line 75: Statement is not in a procedure.
+Height = 34
+Error in line 76: Statement is not in a procedure.
+TabIndex = 11
+Error in line 77: Statement is not in a procedure.
+Name = "Boton5"
+Error in line 78: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-1.png
+Error in line 79: Syntax error.
+Image1.Height = 28
+Error in line 80: Statement is not in a procedure.
+Image1.Left = 14
+Error in line 81: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 82: Statement is not in a procedure.
+Image1.Width = 101
+Error in line 83: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 84: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 85: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 86: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 87: Statement is not in a procedure.
+Label1.FontSize = 12
+Error in line 88: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 89: Statement is not in a procedure.
+Label1.Caption = "OPCIONES"
+Error in line 90: Statement is not in a procedure.
+Label1.Height = 17
+Error in line 91: Statement is not in a procedure.
+Label1.Left = 6
+Error in line 92: Statement is not in a procedure.
+Label1.Top = 9
+Error in line 93: Statement is not in a procedure.
+Label1.Width = 117
+Error in line 94: Statement is not in a procedure.
+Label1.ForeColor = 255,255,255
+Error in line 95: Syntax error.
+Label1.Name = "Label1"
+Error in line 96: Statement is not in a procedure.
+Left = 30
+Error in line 98: Statement is not in a procedure.
+Width = 171
+Error in line 99: Statement is not in a procedure.
+Height = 80
+Error in line 100: Statement is not in a procedure.
+TabIndex = 11
+Error in line 101: Statement is not in a procedure.
+Name = "Boton1"
+Error in line 102: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 103: Syntax error.
+Image1.Height = 71
+Error in line 104: Statement is not in a procedure.
+Image1.Left = 8
+Error in line 105: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 106: Statement is not in a procedure.
+Image1.Width = 155
+Error in line 107: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 108: Statement is not in a procedure.
+Label1.AutoSize = .T.
+Error in line 109: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 110: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 111: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 112: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 113: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 114: Statement is not in a procedure.
+Label1.Caption = "Cambio de Factura"
+Error in line 115: Statement is not in a procedure.
+Label1.Height = 56
+Error in line 116: Statement is not in a procedure.
+Label1.Left = 19
+Error in line 117: Statement is not in a procedure.
+Label1.Top = 14
+Error in line 118: Statement is not in a procedure.
+Label1.Width = 128
+Error in line 119: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 120: Statement is not in a procedure.
+PUBLIC XQCOMANDA,XCUENTA,XQCUENTA
+Error in line 122: Statement is not in a procedure.
+ESREFAC=1
+Error in line 123: Statement is not in a procedure.
+XQCOMANDA=0
+Error in line 124: Statement is not in a procedure.
+MiProblema=0
+Error in line 126: Statement is not in a procedure.
+SET STEP ON 
+Error in line 127: Statement is not in a procedure.
+SELECT id_correla FROM sys01 WHERE idusuario=susuario INTO CURSOR micorrelasalon
+Error in line 129: Statement is not in a procedure.
+IF !EOF() AND micorrelasalon.id_correla<>0
+Error in line 131: Statement is not in a procedure.
+STORE micorrelasalon.id_correla TO xqcorrelauso
+Error in line 132: Statement is not in a procedure.
+ELSE
+Error in line 133: Statement is not in a procedure.
+DO FORM AVISOBOX WITH "El usuario no esta autorizado para facturar."
+Error in line 134: Statement is not in a procedure.
+RETURN
+Error in line 135: Statement is not in a procedure.
+ENDIF
+Error in line 137: Statement is not in a procedure.
+SELECT * FROM Corrala_fac WHERE id=xqcorrelauso INTO CURSOR MICURCFAC
+Error in line 139: Statement is not in a procedure.
+XCORRELA=(MICURCFAC.FACTURA)
+Error in line 141: Statement is not in a procedure.
+XSERIE=(MICURCFAC.SERIE)
+Error in line 142: Statement is not in a procedure.
+SELECT factura FROM factura WHERE Factura=(xcorrela+1) AND Serie=XSERIE AND tipo=1 INTO CURSOR ExisFac
+Error in line 145: Statement is not in a procedure.
+IF !EOF()
+Error in line 146: Statement is not in a procedure.
+STORE 1 TO Miproblema
+Error in line 147: Statement is not in a procedure.
+ENDIF
+Error in line 148: Statement is not in a procedure.
+SELECT factura
+Error in line 150: Statement is not in a procedure.
+LOCATE FOR factura=0
+Error in line 151: Statement is not in a procedure.
+IF FOUND()
+Error in line 152: Statement is not in a procedure.
+SELECT * FROM corrala_fac INTO CURSOR  MeQuitaBlanco
+Error in line 153: Statement is not in a procedure.
+SELECT factura
+Error in line 154: Statement is not in a procedure.
+replace factura WITH Mequitablanco.quitablanco
+Error in line 155: Statement is not in a procedure.
+UPDATE corrala_fac SET quitablanco=(Mequitablanco.quitablanco-1)
+Error in line 156: Statement is not in a procedure.
+ENDIF
+Error in line 157: Statement is not in a procedure.
+IF MiProblema=1
+Error in line 158: Statement is not in a procedure.
+DO FORM AVISOBOX WITH "El correlativo de la factura a imprimir ya existe verifique el correlativo."
+Error in line 159: Statement is not in a procedure.
+ELSE
+Error in line 160: Statement is not in a procedure.
+DO FORM PIDECOMANDA
+Error in line 161: Statement is not in a procedure.
+SELECT A.MESA,B.SALON,a.cta_separada FROM COMANDA A,DETALLE_SALON B WHERE A.COMANDA=XQCOMANDA AND A.MESA=B.MESA INTO CURSOR SALONCOMANDA
+Error in line 163: Statement is not in a procedure.
+STORE SALONCOMANDA.SALON TO QSALON
+Error in line 165: Statement is not in a procedure.
+STORE SALONCOMANDA.cta_separada TO xqctasep
+Error in line 166: Statement is not in a procedure.
+xmiwhere=""
+Error in line 168: Statement is not in a procedure.
+xpagosilla=0
+Error in line 169: Statement is not in a procedure.
+IF xqctasep
+Error in line 171: Statement is not in a procedure.
+DO FORM pidesilla
+Error in line 172: Statement is not in a procedure.
+xpagosilla=xsilla
+Error in line 174: Statement is not in a procedure.
+xmiwhere="and silla=xpagosilla"
+Error in line 176: Statement is not in a procedure.
+ENDIF
+Error in line 177: Statement is not in a procedure.
+UPDATE detalle_forma_pago SET pagado=0 WHERE comanda=XQCOMANDA &xmiwhere
+Error in line 179: Statement is not in a procedure.
+SELECT B.evento,B.no_evento,a.p_persona,b.comensales FROM evento a,comanda b WHERE b.comanda=XQCOMANDA AND a.evento=b.no_evento INTO CURSOR dataevento
+Error in line 181: Statement is not in a procedure.
+IF dataevento.evento<>1 
+Error in line 183: Statement is not in a procedure.
+SELECT comanda,producto,SUM(cantidad) as cantidad,precio, DETALLE,SILLA from DETALLE_COMANDA WHERE COMANDA =XQCOMANDA AND enviado AND precio>0 &xmiwhere GROUP BY producto,DETALLE,SILLA INTO CURSOR CURDETALLE
+Error in line 186: Statement is not in a procedure.
+DELETE FROM detalle_pago_comanda WHERE COMANDA =XQCOMANDA &xmiwhere
+Error in line 188: Statement is not in a procedure.
+SELECT CURDETALLE
+Error in line 190: Statement is not in a procedure.
+SCAN
+Error in line 191: Statement is not in a procedure.
+XCUENTA =1
+Error in line 192: Statement is not in a procedure.
+SELECT detalle_pago_comanda
+Error in line 193: Statement is not in a procedure.
+APPEND BLANK
+Error in line 194: Statement is not in a procedure.
+REPLACE COMANDA WITH CURDETALLE.COMANDA
+Error in line 195: Statement is not in a procedure.
+replace cuenta WITH XCUENTA
+Error in line 196: Statement is not in a procedure.
+REPLACE PRODUCTO WITH CURDETALLE.PRODUCTO
+Error in line 197: Statement is not in a procedure.
+REPLACE CANTIDAD WITH CURDETALLE.CANTIDAD
+Error in line 198: Statement is not in a procedure.
+REPLACE PRECIO WITH CURDETALLE.PRECIO
+Error in line 199: Statement is not in a procedure.
+REPLACE SUBTOTAL WITH CANTIDAD * PRECIO
+Error in line 200: Statement is not in a procedure.
+REPLACE DETALLE WITH CURDETALLE.DETALLE
+Error in line 201: Statement is not in a procedure.
+replace silla WITH CURDETALLE.SILLA
+Error in line 202: Statement is not in a procedure.
+ENDSCAN
+Error in line 203: Statement is not in a procedure.
+ELSE
+Error in line 204: Statement is not in a procedure.
+DO detpago_comanda
+Error in line 206: Statement is not in a procedure.
+ENDIF
+Error in line 237: Statement is not in a procedure.
+SELECT SUM(subtotal) as total  from DETALLE_PAGO_COMANDA  WHERE comanda= xqcomanda AND cuenta=XCUENTA &xmiwhere INTO CURSOR midata
+Error in line 242: Statement is not in a procedure.
+XAFACTURAR=midata.total
+Error in line 244: Statement is not in a procedure.
+XQCUENTA=XCUENTA
+Error in line 245: Statement is not in a procedure.
+DO FORM PIDECLIENTE WITH 2
+Error in line 246: Statement is not in a procedure.
+ENDIF
+Error in line 247: Statement is not in a procedure.
+ENDPROC
+Error in line 249: Nesting error.
+…þòÿ 
+Error in line 251: Unrecognized command verb.
+ð
+Error in line 258: Unrecognized command verb.
+ýù•þ
+Error in line 263: Unrecognized command verb.
+j
+Error in line 272: Unrecognized command verb.
+G
+Error in line 275: Unrecognized command verb.
+
+Error in line 276: Unrecognized command verb.
+
+Error in line 279: Unrecognized command verb.
+rr
+Error in line 290: Unrecognized command verb.
+Left = 30
+Error in line 292: Statement is not in a procedure.
+Width = 171
+Error in line 293: Statement is not in a procedure.
+Height = 80
+Error in line 294: Statement is not in a procedure.
+TabIndex = 11
+Error in line 295: Statement is not in a procedure.
+Name = "Boton2"
+Error in line 296: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 297: Syntax error.
+Image1.Height = 70
+Error in line 298: Statement is not in a procedure.
+Image1.Left = 8
+Error in line 299: Statement is not in a procedure.
+Image1.Top = 5
+Error in line 300: Statement is not in a procedure.
+Image1.Width = 155
+Error in line 301: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 302: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 303: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 304: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 305: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 306: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 307: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 308: Statement is not in a procedure.
+Label1.Caption = "Traslado de Mesa"
+Error in line 309: Statement is not in a procedure.
+Label1.Height = 60
+Error in line 310: Statement is not in a procedure.
+Label1.Left = 20
+Error in line 311: Statement is not in a procedure.
+Label1.Top = 10
+Error in line 312: Statement is not in a procedure.
+Label1.Width = 130
+Error in line 313: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 314: Statement is not in a procedure.
+PUBLIC XQCOMANDA,XCUENTA,XQCUENTA
+Error in line 316: Statement is not in a procedure.
+XQCOMANDA=0
+Error in line 317: Statement is not in a procedure.
+DO FORM datos_traslado
+Error in line 318: Statement is not in a procedure.
+ENDPROC
+Error in line 319: Nesting error.
+Left = 36
+Error in line 322: Statement is not in a procedure.
+Width = 171
+Error in line 323: Statement is not in a procedure.
+Height = 80
+Error in line 324: Statement is not in a procedure.
+Visible = .F.
+Error in line 325: Statement is not in a procedure.
+TabIndex = 11
+Error in line 326: Statement is not in a procedure.
+Name = "Boton3"
+Error in line 327: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 328: Syntax error.
+Image1.Height = 71
+Error in line 329: Statement is not in a procedure.
+Image1.Left = 8
+Error in line 330: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 331: Statement is not in a procedure.
+Image1.Width = 154
+Error in line 332: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 333: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 334: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 335: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 336: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 337: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 338: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 339: Statement is not in a procedure.
+Label1.Caption = "Datos de Comanda"
+Error in line 340: Statement is not in a procedure.
+Label1.Height = 55
+Error in line 341: Statement is not in a procedure.
+Label1.Left = 8
+Error in line 342: Statement is not in a procedure.
+Label1.Top = 12
+Error in line 343: Statement is not in a procedure.
+Label1.Width = 154
+Error in line 344: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 345: Statement is not in a procedure.
+PUBLIC XQCOMANDA,XCUENTA,XQCUENTA
+Error in line 347: Statement is not in a procedure.
+XQCOMANDA=0
+Error in line 348: Statement is not in a procedure.
+DO FORM PIDECOMANDA
+Error in line 349: Statement is not in a procedure.
+DO FORM datos_comanda
+Error in line 350: Statement is not in a procedure.
+ENDPROC
+Error in line 351: Nesting error.
+Left = 210
+Error in line 356: Statement is not in a procedure.
+Width = 171
+Error in line 357: Statement is not in a procedure.
+Height = 80
+Error in line 358: Statement is not in a procedure.
+TabIndex = 11
+Error in line 359: Statement is not in a procedure.
+Name = "Boton4"
+Error in line 360: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 361: Syntax error.
+Image1.Height = 71
+Error in line 362: Statement is not in a procedure.
+Image1.Left = 7
+Error in line 363: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 364: Statement is not in a procedure.
+Image1.Width = 156
+Error in line 365: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 366: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 367: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 368: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 369: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 370: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 371: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 372: Statement is not in a procedure.
+Label1.Caption = "Correla. Facturas"
+Error in line 373: Statement is not in a procedure.
+Label1.Height = 60
+Error in line 374: Statement is not in a procedure.
+Label1.Left = 16
+Error in line 375: Statement is not in a procedure.
+Label1.Top = 9
+Error in line 376: Statement is not in a procedure.
+Label1.Width = 139
+Error in line 377: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 378: Statement is not in a procedure.
+SELECT * FROM config INTO CURSOR elcurpas
+Error in line 381: Statement is not in a procedure.
+xpass=""
+Error in line 382: Statement is not in a procedure.
+DO FORM PidePassword
+Error in line 383: Statement is not in a procedure.
+IF allt(xpass)=ALLTRIM(elcurpas.spcpass)
+Error in line 384: Statement is not in a procedure.
+DO FORM correla
+Error in line 385: Statement is not in a procedure.
+ELSE
+Error in line 386: Statement is not in a procedure.
+DO FORM mesagebox WITH "Contraña Incorrecta!!"
+Error in line 387: Statement is not in a procedure.
+endif
+Error in line 388: Statement is not in a procedure.
+ENDPROC
+Error in line 392: Nesting error.
+Left = 210
+Error in line 396: Statement is not in a procedure.
+Width = 171
+Error in line 397: Statement is not in a procedure.
+Height = 80
+Error in line 398: Statement is not in a procedure.
+TabIndex = 11
+Error in line 399: Statement is not in a procedure.
+Name = "Boton7"
+Error in line 400: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 401: Syntax error.
+Image1.Height = 71
+Error in line 402: Statement is not in a procedure.
+Image1.Left = 8
+Error in line 403: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 404: Statement is not in a procedure.
+Image1.Width = 154
+Error in line 405: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 406: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 407: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 408: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 409: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 410: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 411: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 412: Statement is not in a procedure.
+Label1.Caption = "Mesa Abierta"
+Error in line 413: Statement is not in a procedure.
+Label1.Height = 60
+Error in line 414: Statement is not in a procedure.
+Label1.Left = 17
+Error in line 415: Statement is not in a procedure.
+Label1.Top = 9
+Error in line 416: Statement is not in a procedure.
+Label1.Width = 137
+Error in line 417: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 418: Statement is not in a procedure.
+DO FORM datos_mesaabierta
+Error in line 420: Statement is not in a procedure.
+ENDPROC
+Error in line 421: Nesting error.
+Left = 210
+Error in line 423: Statement is not in a procedure.
+Width = 171
+Error in line 424: Statement is not in a procedure.
+Height = 80
+Error in line 425: Statement is not in a procedure.
+TabIndex = 11
+Error in line 426: Statement is not in a procedure.
+Name = "Boton9"
+Error in line 427: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 428: Syntax error.
+Image1.Height = 71
+Error in line 429: Statement is not in a procedure.
+Image1.Left = 9
+Error in line 430: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 431: Statement is not in a procedure.
+Image1.Width = 152
+Error in line 432: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 433: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 434: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 435: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 436: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 437: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 438: Statement is not in a procedure.
+Label1.Caption = "Cuenta"
+Error in line 439: Statement is not in a procedure.
+Label1.Height = 25
+Error in line 440: Statement is not in a procedure.
+Label1.Left = 18
+Error in line 441: Statement is not in a procedure.
+Label1.Top = 27
+Error in line 442: Statement is not in a procedure.
+Label1.Width = 134
+Error in line 443: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 444: Statement is not in a procedure.
+XQCOMANDA=0
+Error in line 446: Statement is not in a procedure.
+DO FORM PIDECOMANDA
+Error in line 447: Statement is not in a procedure.
+IF XQCOMANDA<>0
+Error in line 450: Statement is not in a procedure.
+DO IMPRIME_PRECUENTA WITH XQCOMANDA
+Error in line 451: Statement is not in a procedure.
+ELSE
+Error in line 707: Statement is not in a procedure.
+DO FORM MESAGEBOX WITH "No ingreso algun nuemero de comanda!"
+Error in line 708: Statement is not in a procedure.
+ENDIF
+Error in line 709: Statement is not in a procedure.
+STORE 0 TO qsalon
+Error in line 711: Statement is not in a procedure.
+thisform.release
+Error in line 713: Statement is not in a procedure.
+ENDPROC
+Error in line 715: Nesting error.
+Left = 155
+Error in line 720: Statement is not in a procedure.
+Width = 102
+Error in line 721: Statement is not in a procedure.
+Height = 57
+Error in line 722: Statement is not in a procedure.
+TabIndex = 11
+Error in line 723: Statement is not in a procedure.
+BackColor = 192,192,192
+Error in line 724: Syntax error.
+Name = "Boton6"
+Error in line 725: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 726: Syntax error.
+Image1.Height = 40
+Error in line 727: Statement is not in a procedure.
+Image1.Left = 1
+Error in line 728: Statement is not in a procedure.
+Image1.Top = 10
+Error in line 729: Statement is not in a procedure.
+Image1.Width = 100
+Error in line 730: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 731: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 732: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 733: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 734: Statement is not in a procedure.
+Label1.FontSize = 12
+Error in line 735: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 736: Statement is not in a procedure.
+Label1.Caption = "SALIR"
+Error in line 737: Statement is not in a procedure.
+Label1.Height = 30
+Error in line 738: Statement is not in a procedure.
+Label1.Left = 10
+Error in line 739: Statement is not in a procedure.
+Label1.Top = 21
+Error in line 740: Statement is not in a procedure.
+Label1.Width = 82
+Error in line 741: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 742: Statement is not in a procedure.
+THISFORM.Release 
+Error in line 744: Statement is not in a procedure.
+ENDPROC
+Error in line 745: Nesting error.
+Left = 210
+Error in line 749: Statement is not in a procedure.
+Width = 171
+Error in line 750: Statement is not in a procedure.
+Height = 80
+Error in line 751: Statement is not in a procedure.
+TabIndex = 11
+Error in line 752: Statement is not in a procedure.
+Name = "Boton10"
+Error in line 753: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 754: Syntax error.
+Image1.Height = 71
+Error in line 755: Statement is not in a procedure.
+Image1.Left = 9
+Error in line 756: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 757: Statement is not in a procedure.
+Image1.Width = 152
+Error in line 758: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 759: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 760: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 761: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 762: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 763: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 764: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 765: Statement is not in a procedure.
+Label1.Caption = "Cortes de Caja"
+Error in line 766: Statement is not in a procedure.
+Label1.Height = 60
+Error in line 767: Statement is not in a procedure.
+Label1.Left = 18
+Error in line 768: Statement is not in a procedure.
+Label1.Top = 9
+Error in line 769: Statement is not in a procedure.
+Label1.Width = 134
+Error in line 770: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 771: Statement is not in a procedure.
+DO FORM corte_turno
+Error in line 773: Statement is not in a procedure.
+ENDPROC
+Error in line 774: Nesting error.
+Left = 30
+Error in line 776: Statement is not in a procedure.
+Width = 351
+Error in line 777: Statement is not in a procedure.
+Height = 80
+Error in line 778: Statement is not in a procedure.
+TabIndex = 11
+Error in line 779: Statement is not in a procedure.
+Name = "Boton11"
+Error in line 780: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 781: Syntax error.
+Image1.Height = 71
+Error in line 782: Statement is not in a procedure.
+Image1.Left = 65
+Error in line 783: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 784: Statement is not in a procedure.
+Image1.Width = 220
+Error in line 785: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 786: Statement is not in a procedure.
+Label1.AutoSize = .F.
+Error in line 787: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 788: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 789: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 790: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 791: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 792: Statement is not in a procedure.
+Label1.Caption = "Configuracion"
+Error in line 793: Statement is not in a procedure.
+Label1.Height = 28
+Error in line 794: Statement is not in a procedure.
+Label1.Left = 77
+Error in line 795: Statement is not in a procedure.
+Label1.Top = 25
+Error in line 796: Statement is not in a procedure.
+Label1.Width = 196
+Error in line 797: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 798: Statement is not in a procedure.
+SELECT * FROM config INTO CURSOR elcurpas
+Error in line 800: Statement is not in a procedure.
+xpass=""
+Error in line 801: Statement is not in a procedure.
+IF !EMPTY(ALLTRIM(elcurpas.pasadmin))
+Error in line 803: Statement is not in a procedure.
+DO FORM PidePassword
+Error in line 804: Statement is not in a procedure.
+ELSE
+Error in line 805: Statement is not in a procedure.
+xpass=ALLTRIM(elcurpas.pasadmin)
+Error in line 806: Statement is not in a procedure.
+ENDIF
+Error in line 807: Statement is not in a procedure.
+IF allt(xpass)=ALLTRIM(elcurpas.pasadmin)
+Error in line 809: Statement is not in a procedure.
+DO FORM config
+Error in line 811: Statement is not in a procedure.
+ENDIF
+Error in line 813: Statement is not in a procedure.
+ENDPROC
+Error in line 814: Nesting error.
+ýùR
+Error in line 817: Unrecognized command verb.
+Left = 30
+Error in line 818: Statement is not in a procedure.
+Width = 171
+Error in line 819: Statement is not in a procedure.
+Height = 80
+Error in line 820: Statement is not in a procedure.
+TabIndex = 11
+Error in line 821: Statement is not in a procedure.
+Name = "Boton12"
+Error in line 822: Statement is not in a procedure.
+Image1.Picture = ..\bmps\untitled-3.png
+Error in line 823: Syntax error.
+Image1.Height = 71
+Error in line 824: Statement is not in a procedure.
+Image1.Left = 8
+Error in line 825: Statement is not in a procedure.
+Image1.Top = 4
+Error in line 826: Statement is not in a procedure.
+Image1.Width = 155
+Error in line 827: Statement is not in a procedure.
+Image1.Name = "Image1"
+Error in line 828: Statement is not in a procedure.
+Label1.AutoSize = .T.
+Error in line 829: Statement is not in a procedure.
+Label1.FontBold = .T.
+Error in line 830: Statement is not in a procedure.
+Label1.FontName = "Courier New"
+Error in line 831: Statement is not in a procedure.
+Label1.FontSize = 18
+Error in line 832: Statement is not in a procedure.
+Label1.WordWrap = .T.
+Error in line 833: Statement is not in a procedure.
+Label1.Alignment = 2
+Error in line 834: Statement is not in a procedure.
+Label1.Caption = "ReImprimir Factura"
+Error in line 835: Statement is not in a procedure.
+Label1.Height = 56
+Error in line 836: Statement is not in a procedure.
+Label1.Left = 16
+Error in line 837: Statement is not in a procedure.
+Label1.Top = 15
+Error in line 838: Statement is not in a procedure.
+Label1.Width = 142
+Error in line 839: Statement is not in a procedure.
+Label1.Name = "Label1"
+Error in line 840: Statement is not in a procedure.
+SELECT id_correla FROM SYS01 WHERE idusuario=susuario INTO CURSOR micorrelasalon
+Error in line 842: Statement is not in a procedure.
+IF micorrelasalon.id_correla = 0
+Error in line 844: Statement is not in a procedure.
+DO FORM AVISOBOX WITH "El usuario no esta autorizado para facturar."
+Error in line 845: Statement is not in a procedure.
+RETURN
+Error in line 846: Statement is not in a procedure.
+ELSE
+Error in line 847: Statement is not in a procedure.
+DO reimprime_factura
+Error in line 848: Statement is not in a procedure.
+ENDIF
+Error in line 849: Statement is not in a procedure.
+ENDPROC
+Error in line 850: Nesting error.

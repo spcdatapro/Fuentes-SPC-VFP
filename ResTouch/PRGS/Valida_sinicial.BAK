@@ -1,0 +1,16 @@
+FUNCTION valida_sinicial
+	PARAMETERS xelturno
+	
+	xvalregresa=.F.
+	
+	SELECT * FROM desglose_efectivo WHERE turno=xelturno AND tipo=1 INTO CURSOR turno_vsi
+	
+	SELECT turno_vsi
+	IF !EOF()
+		xvalregresa=.T.
+	ELSE
+		xvalregresa=.F.
+	ENDIF
+	
+	RETURN xvalregresa
+ENDFUNC

@@ -1,0 +1,729 @@
+CLOSE ALL
+
+PUBLIC fecini,fecfin
+
+STORE CTOD("1/"+STR(MONTH(DATE()))+"/"+STR(YEAR(DATE()))) TO fecini
+STORE DATE() TO fecfin
+
+DO FORM ranfechas
+
+CREATE CURSOR laventa (fecha D, efectivo n(10,2), vcredo n(10,2), ccredo n(10,2), rcredo n(10,2), lcredo n(10,2), vvisa n(10,2), cvisa n(10,2), rvisa n(10,2), lvisa n(10,2), fmanual n(10,2), dif_sys n(10,2), cortesia n(10,2),;
+	deposito n(10,2), vdol n(10,2))
+
+
+		xventa_rest = 0.00
+		xventa_domicilio = 0.00
+		xventa_traer = 0.00
+
+		IF sturno<>0
+			xcad= "and b.turno in(select turno from misturnos)"
+		ELSE
+			xcad = "and BETWEEN(a.fecha,fecini,fecfin)"
+		ENDIF
+
+		IF ssalon<>0
+			xcad2= "and  mesa in(select mesa from mismesas)"
+		ENDIF
+		
+		IF sCAJA<>0
+			xcad3= "caja = "+ALLTRIM(STR(scaja))
+		ELSE
+			xcad3 = ""
+		ENDIF
+		
+		*SET STEP ON 
+			** COMANDAS DEL TURNO
+		IF xverhisto=0
+			IF sturno<>0
+				SELECT * FROM comanda WHERE turno in(SELECT turno FROM misturnos)  ORDER BY comanda INTO CURSOR Lascomandas
+			ELSE
+				SELECT * FROM comanda ORDER BY comanda INTO CURSOR Lascomandas
+			ENDIF
+		ELSE
+			IF sturno<>0
+				SELECT * FROM comanda WHERE turno in(SELECT turno FROM misturnos)  ORDER BY comanda INTO CURSOR Lascomandas1
+				
+				SELECT * FROM hist_comanda WHERE turno in(SELECT turno FROM misturnos)  ORDER BY comanda INTO CURSOR Lascomandas2
+				
+				SELECT * FROM lascomandas1 UNION ALL ;
+				SELECT * FROM lascomandas2 ORDER BY comanda INTO CURSOR lascomandas
+				
+			ELSE
+				SELECT * FROM comanda ORDER BY comanda INTO CURSOR Lascomandas1
+				
+				SELECT * FROM hist_comanda ORDER BY comanda INTO CURSOR Lascomandas2
+				
+				SELECT * FROM lascomandas1 UNION ALL ;
+				SELECT * FROM lascomandas2 ORDER BY comanda INTO CURSOR lascomandas
+			ENDIF
+		ENDIF
+		
+		
+		
+		** FACTURAS DEL TURNO
+
+		IF xverhisto=0
+			SELECT A.FACTURA,C.IDENTIFICADOR,A.FECHA,A.CLIENTE,A.A_NOMBRE,IIF(a.ANULADA,000000000.00,A.TOTAL) AS TOTAL,;
+			IIF(a.ANULADA,0000000.00,A.DESCUENTO) AS DESCUENTO,IIF(a.ANULADA,0000000.00,A.PROPINA) AS PROPINA,b.turno,A.ANULADA,a.comanda,serie;
+			FROM FACTURA A, comanda b, detalle_salon c,lascomandas e ;
+			WHERE a.comanda=b.comanda AND a.comanda=e.comanda AND b.mesa=c.mesa AND a.tipo=1 &XCAD ;
+			ORDER BY factura;
+			INTO CURSOR MICURFAC
+			*SUM ALL TOTAL+PROPINA-DESCUENTO TO MONTOFAC
+			SUM ALL TOTAL+PROPINA TO MONTOFAC
+			
+			SELECT A.FACTURA,C.IDENTIFICADOR,A.FECHA,A.CLIENTE,A.A_NOMBRE,IIF(a.ANULADA,000000000.00,A.TOTAL) AS TOTAL,;
+			IIF(a.ANULADA,0000000.00,A.DESCUENTO) AS DESCUENTO,IIF(a.ANULADA,0000000.00,A.PROPINA) AS PROPINA,b.turno,A.ANULADA,a.comanda,serie;
+			FROM FACTURA A, comanda b, detalle_salon c,lascomandas e ;
+			WHERE a.comanda=b.comanda AND a.comanda=e.comanda AND b.mesa=c.mesa AND a.tipo=2 &XCAD ;
+			ORDER BY factura;
+			INTO CURSOR MICURREC
+			*SUM ALL TOTAL+PROPINA-DESCUENTO TO MONTOREC
+			SUM ALL TOTAL+PROPINA TO MONTOREC
+		ELSE
+			SELECT A.FACTURA,C.IDENTIFICADOR,A.FECHA,A.CLIENTE,A.A_NOMBRE,IIF(a.ANULADA,000000000.00,A.TOTAL) AS TOTAL,;
+			IIF(a.ANULADA,0000000.00,A.DESCUENTO) AS DESCUENTO,IIF(a.ANULADA,0000000.00,A.PROPINA) AS PROPINA,b.turno,A.ANULADA,a.comanda,serie;
+			FROM FACTURA A, comanda b, detalle_salon c,lascomandas e ;
+			WHERE a.comanda=b.comanda AND a.comanda=e.comanda AND b.mesa=c.mesa AND a.tipo=1 &XCAD ;
+			ORDER BY factura;
+			INTO CURSOR MICURFAC1
+			
+			SELECT A.FACTURA,C.IDENTIFICADOR,A.FECHA,A.CLIENTE,A.A_NOMBRE,IIF(a.ANULADA,000000000.00,A.TOTAL) AS TOTAL,;
+			IIF(a.ANULADA,0000000.00,A.DESCUENTO) AS DESCUENTO,IIF(a.ANULADA,0000000.00,A.PROPINA) AS PROPINA,b.turno,A.ANULADA,a.comanda,serie;
+			FROM FACTURA A, comanda b, detalle_salon c,lascomandas e ;
+			WHERE a.comanda=b.comanda AND a.comanda=e.comanda AND b.mesa=c.mesa AND a.tipo=2 &XCAD ;
+			ORDER BY factura;
+			INTO CURSOR MICURREC1
+			
+			SELECT A.FACTURA,C.IDENTIFICADOR,A.FECHA,A.CLIENTE,A.A_NOMBRE,IIF(a.ANULADA,000000000.00,A.TOTAL) AS TOTAL,;
+			IIF(a.ANULADA,0000000.00,A.DESCUENTO) AS DESCUENTO,IIF(a.ANULADA,0000000.00,A.PROPINA) AS PROPINA,b.turno,A.ANULADA,a.comanda,serie;
+			FROM hist_FACTURA A, hist_comanda b, detalle_salon c,lascomandas e ;
+			WHERE a.comanda=b.comanda AND a.comanda=e.comanda AND b.mesa=c.mesa AND a.tipo=1 &XCAD ;
+			ORDER BY factura;
+			INTO CURSOR MICURFAC2
+			
+			SELECT A.FACTURA,C.IDENTIFICADOR,A.FECHA,A.CLIENTE,A.A_NOMBRE,IIF(a.ANULADA,000000000.00,A.TOTAL) AS TOTAL,;
+			IIF(a.ANULADA,0000000.00,A.DESCUENTO) AS DESCUENTO,IIF(a.ANULADA,0000000.00,A.PROPINA) AS PROPINA,b.turno,A.ANULADA,a.comanda,serie;
+			FROM FACTURA A, comanda b, detalle_salon c,lascomandas e ;
+			WHERE a.comanda=b.comanda AND a.comanda=e.comanda AND b.mesa=c.mesa AND a.tipo=2 &XCAD ;
+			ORDER BY factura;
+			INTO CURSOR MICURREC2
+			
+			SELECT * FROM micurfac1 UNION ALL;
+			SELECT * FROM micurfac2 ORDER BY factura INTO CURSOR micurfac
+			*SUM ALL TOTAL+PROPINA-DESCUENTO TO MONTOFAC
+			SUM ALL TOTAL+PROPINA TO MONTOFAC
+			
+			SELECT * FROM micurrec1 UNION ALL;
+			SELECT * FROM micurrec2 ORDER BY factura INTO CURSOR micurrec
+			*SUM ALL TOTAL+PROPINA-DESCUENTO TO MONTOREC
+			SUM ALL TOTAL+PROPINA TO MONTOREC
+			
+		ENDIF
+		
+			
+	*!*		SELECT A.FACTURA,C.IDENTIFICADOR,A.FECHA,A.CLIENTE,A.A_NOMBRE,IIF(a.ANULADA,000000000.00,A.TOTAL) AS TOTAL,;
+	*!*		IIF(a.ANULADA,0000000.00,A.DESCUENTO) AS DESCUENTO,IIF(a.ANULADA,0000000.00,A.PROPINA) AS PROPINA,b.turno,A.ANULADA;
+	*!*		FROM FACTURA A, comanda b, detalle_salon c,lascomandas e ;
+	*!*		WHERE a.comanda=b.comanda AND a.comanda=e.comanda AND b.mesa=c.mesa AND BETWEEN(a.fecha,fecini,fecfin) &XCAD ;
+	*!*		ORDER BY factura;
+	*!*		INTO CURSOR MICURFAC
+	*!*		SUM ALL TOTAL TO MONTOFAC	
+		
+		STORE "" TO stitulofacrec
+		SELECT distinct serie as serie FROM micurfac INTO CURSOR laserfac
+		SELECT laserfac
+		SCAN
+			IF EMPTY(stitulofacrec)
+				SELECT * FROM micurfac WHERE ALLTRIM(serie)==ALLTRIM(laserfac.serie) ORDER BY factura INTO CURSOR scanserie
+				SELECT scanserie
+				SUM ALL total+propina-descuento TO totfacser
+				
+				SELECT scanserie
+				GO TOP
+				DEFACser=scanserie.FACTURA
+				GO BOTT
+				AFACser=scanserie.FACTURA
+				
+				STORE stitulofacrec+PADR("FACTURAS SERIE '"+ALLTRIM(laserfac.serie)+"' DEL "+ALLTRIM(STR(defacser))+" AL "+ALLTRIM(STR(afacser)),40)+PADL(ALLTRIM(STR(totfacser,10,2)),14) TO stitulofacrec
+				
+			ELSE
+				SELECT * FROM micurfac WHERE ALLTRIM(serie)==ALLTRIM(laserfac.serie) ORDER BY factura INTO CURSOR scanserie
+				SELECT scanserie
+				SUM ALL total+propina-descuento TO totfacser
+				
+				SELECT scanserie
+				GO TOP
+				DEFACser=scanserie.FACTURA
+				GO BOTT
+				AFACser=scanserie.FACTURA
+				
+				STORE stitulofacrec+CHR(13)+CHR(13)+PADR("FACTURAS SERIE '"+ALLTRIM(laserfac.serie)+"' DEL "+ALLTRIM(STR(defacser))+" AL "+ALLTRIM(STR(afacser)),40)+PADL(ALLTRIM(STR(totfacser,10,2)),14) TO stitulofacrec
+								
+			ENDIF
+		ENDSCAN		
+		
+		SELECT distinct serie as serie FROM micurrec INTO CURSOR laserrec
+		SELECT laserrec
+		SCAN
+			IF EMPTY(stitulofacrec)
+				SELECT * FROM micurrec WHERE ALLTRIM(serie)==ALLTRIM(laserrec.serie) ORDER BY factura INTO CURSOR scanserie
+				SELECT scanserie
+				SUM ALL total+propina TO totfacser
+				
+				SELECT scanserie
+				GO TOP
+				DEFACser=scanserie.FACTURA
+				GO BOTT
+				AFACser=scanserie.FACTURA
+				
+				STORE stitulofacrec+PADR("RECIBOS SERIE '"+ALLTRIM(laserrec.serie)+"' DEL "+ALLTRIM(STR(defacser))+" AL "+ALLTRIM(STR(afacser)),40)+PADL(ALLTRIM(STR(totfacser,10,2)),14) TO stitulofacrec
+				
+			ELSE
+				SELECT * FROM micurrec WHERE ALLTRIM(serie)==ALLTRIM(laserrec.serie) ORDER BY factura INTO CURSOR scanserie
+				SELECT scanserie
+				SUM ALL total+propina TO totfacser
+				
+				SELECT scanserie
+				GO TOP
+				DEFACser=scanserie.FACTURA
+				GO BOTT
+				AFACser=scanserie.FACTURA
+				
+				STORE stitulofacrec+CHR(13)+CHR(13)+PADR("RECIBOS SERIE '"+ALLTRIM(laserrec.serie)+"' DEL "+ALLTRIM(STR(defacser))+" AL "+ALLTRIM(STR(afacser)),40)+PADL(ALLTRIM(STR(totfacser,10,2)),14) TO stitulofacrec
+								
+			ENDIF
+		ENDSCAN		
+		
+		SELECT micurfac
+		GO TOP
+		DEFACTURA=MICURFAC.FACTURA
+		GO BOTT
+		AFACTURA=MICURFAC.FACTURA
+		
+		SELECT micurrec
+		GO TOP
+		DERECIBO=MICURREC.FACTURA
+		GO BOTT
+		ARECIBO=MICURREC.FACTURA
+
+		IF sturno<>0
+			SELECT * FROM comanda WHERE turno in(SELECT turno FROM misturnos)  ORDER BY comanda INTO CURSOR Lascomandas
+			
+			IF SCAJA<>0
+				xfilcaja="and "+xcad3
+			ELSE
+				xfilcaja=""
+			ENDIF
+			
+			SELECT * FROM desglose_efectivo WHERE turno in(SELECT turno FROM misturnos) AND TIPO=2 &xfilcaja INTO CURSOR losretiros
+			SELECT * FROM desglose_efectivo WHERE turno in(SELECT turno FROM misturnos) AND TIPO=1 &xfilcaja INTO CURSOR elsaldoini
+			SELECT * FROM desglose_efectivo WHERE turno in(SELECT turno FROM misturnos) AND TIPO=4 &xfilcaja INTO CURSOR elsaldofin
+		ELSE
+			SELECT * FROM comanda  WHERE BETWEEN(fecha,fecini,fecfin) ORDER BY comanda INTO CURSOR Lascomandas
+			
+			IF scaja<>0
+				xfilcaja="and "+xcad3
+			ELSE
+				xfilcaja=""
+			ENDIF
+			SELECT * FROM desglose_efectivo WHERE turno in(SELECT turno FROM turno WHERE (BETWEEN(CTOD(DTOC(INICIO)),FECINI,FECFIN))) AND TIPO=2 &xfilcaja INTO CURSOR losretiros
+			SELECT * FROM desglose_efectivo WHERE turno in(SELECT turno FROM turno WHERE (BETWEEN(CTOD(DTOC(INICIO)),FECINI,FECFIN))) AND TIPO=1 &xfilcaja INTO CURSOR elsaldoini
+			SELECT * FROM desglose_efectivo WHERE turno in(SELECT turno FROM turno WHERE (BETWEEN(CTOD(DTOC(INICIO)),FECINI,FECFIN))) AND TIPO=4 &xfilcaja INTO CURSOR elsaldofin
+		ENDIF
+
+		
+		
+		SELECT lascomandas
+		GO top
+		comandaini=lascomandas.comanda
+		GO bott
+		comandafin=lascomandas.comanda
+
+		STORE "De comanda "+ALLTRIM(STR(comandaini))+" a comanda "+ALLTRIM(STR(comandafin)) TO stitulo2
+		STORE "FACTURAS DEL "+ALLTRIM(STR(defactura))+" AL "+ALLTRIM(STR(afactura)) TO stitulo3
+		STORE "RECIBOS DEL "+ALLTRIM(STR(derecibo))+" AL "+ALLTRIM(STR(arecibo)) TO stitulo4
+
+		IF sturno<>0
+			xcad= "and a.turno in(select turno from misturnos)"
+		ELSE
+			xcad = "and BETWEEN(A.FECHA,FECINI,FECFIN)"
+		ENDIF
+
+		IF ssalon<>0
+			xcad2= "and  a.mesa in(select mesa from mismesas)"
+		endif
+
+
+		*** FORMAS DE PAGO A DETALLE (CHEQUES Y TARJETAS)
+		IF scaja<>0
+			xfilcajafac="and "+xcad3
+		ELSE
+			xfilcajafac=""
+		ENDIF
+	
+		*SELECT * FROM micurfac GROUP BY comanda WHERE !anulada INTO CURSOR Newfac
+		IF xverhisto=0
+			SELECT * FROM factura GROUP BY comanda WHERE !anulada &xfilcajafac INTO CURSOR Newfac
+		ELSE
+			SELECT * FROM factura GROUP BY comanda WHERE !anulada &xfilcajafac INTO CURSOR Newfac1
+			
+			SELECT * FROM hist_factura GROUP BY comanda WHERE !anulada &xfilcajafac INTO CURSOR Newfac2
+			
+			SELECT * FROM Newfac1 UNION ALL;
+			SELECT * FROM Newfac2 GROUP BY comanda ORDER BY comanda INTO CURSOR NewFac 
+		ENDIF
+		
+		IF scaja<>0
+			xfilcajapag="and c."+xcad3
+		ELSE
+			xfilcajapag=""
+		ENDIF
+		
+		IF xverhisto=0
+			** TARJETA  (NECESITA TIPO DE TARJETA PARA QUE LO TOME EN CUENTA DE LO CONTRARIO NO LO INCLUYE)
+			SELECT A.FECHA,A.COMANDA,"MASTERCARD" AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.DESCRIPCION AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , TIPO_TARJETA  E,TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=3 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.TIPO_TARJETA=E.TIPO_TARJETA AND D.HEADERID=C.ID AND d.tipo_tarjeta=1 AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad  &xcad2 &xfilcajapag;
+			INTO CURSOR TARJETAMASTER
+		ELSE
+			SELECT A.FECHA,A.COMANDA,"MASTERCARD" AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.DESCRIPCION AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , TIPO_TARJETA  E,TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=3 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.TIPO_TARJETA=E.TIPO_TARJETA AND D.HEADERID=C.ID AND d.tipo_tarjeta=1 AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad  &xcad2 &xfilcajapag;
+			INTO CURSOR TARJETAMASTER1
+			
+			SELECT A.FECHA,A.COMANDA,"MASTERCARD" AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.DESCRIPCION AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM hist_COMANDA A,FORMA_PAGO B, hist_DETALLE_FORMA_PAGO C , TIPO_TARJETA  E,hist_TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=3 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.TIPO_TARJETA=E.TIPO_TARJETA AND D.HEADERID=C.ID AND d.tipo_tarjeta=1 AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad  &xcad2 &xfilcajapag;
+			INTO CURSOR TARJETAMASTER2
+			
+			SELECT * FROM TARJETAMASTER1 UNION ALL;
+			SELECT * FROM TARJETAMASTER2 INTO CURSOR TARJETAMASTER
+
+		ENDIF			
+		
+		IF xverhisto=0
+			SELECT A.FECHA,A.COMANDA,"VISA NET" AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.DESCRIPCION AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , TIPO_TARJETA  E,TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=3 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.TIPO_TARJETA=E.TIPO_TARJETA AND D.HEADERID=C.ID AND d.tipo_tarjeta=2 AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR TARJETAVISA
+		ELSE
+			SELECT A.FECHA,A.COMANDA,"VISA NET" AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.DESCRIPCION AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , TIPO_TARJETA  E,TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=3 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.TIPO_TARJETA=E.TIPO_TARJETA AND D.HEADERID=C.ID AND d.tipo_tarjeta=2 AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR TARJETAVISA1
+			
+			SELECT A.FECHA,A.COMANDA,"VISA NET" AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.DESCRIPCION AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM hist_COMANDA A,FORMA_PAGO B, hist_DETALLE_FORMA_PAGO C , TIPO_TARJETA  E,hist_TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=3 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.TIPO_TARJETA=E.TIPO_TARJETA AND D.HEADERID=C.ID AND d.tipo_tarjeta=2 AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR TARJETAVISA2
+			
+			SELECT * FROM TARJETAVISA1 UNION ALL;
+			SELECT * FROM TARJETAVISA2 INTO CURSOR TARJETAVISA
+		ENDIF 
+
+	*!*		SELECT A.FECHA,A.COMANDA,"MASTERCARD" AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.DESCRIPCION AS ENTIDAD,;
+	*!*		D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA;
+	*!*		FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , TIPO_TARJETA  E,TIPO_PAGO_DETALLE D, FACTURA F;
+	*!*		WHERE BETWEEN(A.FECHA,FECINI,FECFIN) AND   A.COMANDA = C.COMANDA AND C.FORMA_PAGO=3 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+	*!*		D.TIPO_TARJETA=E.TIPO_TARJETA AND D.HEADERID=C.ID AND d.tipo_tarjeta=1 AND A.COMANDA=F.COMANDA AND !F.ANULADA &xcad  &xcad2 ;
+	*!*		INTO CURSOR TARJETAMASTER
+
+	*!*		
+	*!*		SELECT A.FECHA,A.COMANDA,"VISA NET" AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.DESCRIPCION AS ENTIDAD,;
+	*!*		D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA;
+	*!*		FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , TIPO_TARJETA  E,TIPO_PAGO_DETALLE D, FACTURA F;
+	*!*		WHERE BETWEEN(A.FECHA,FECINI,FECFIN) AND   A.COMANDA = C.COMANDA AND C.FORMA_PAGO=3 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+	*!*		D.TIPO_TARJETA=E.TIPO_TARJETA AND D.HEADERID=C.ID AND d.tipo_tarjeta=2 AND A.COMANDA=F.COMANDA AND !F.ANULADA &xcad &xcad2 ;
+	*!*		INTO CURSOR TARJETAVISA
+
+			** CHEQUE NECESITA BANCO PARA QUE LO TOME EN CUENTA DE LO CONTRARIO NO LO INCLUYE)
+		IF xverhisto=0
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.NOMBRE AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , BANCO  E,TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=2 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.BANCO=E.BANCO AND D.HEADERID=C.ID AND A.COMANDA=F.COMANDA AND !F.ANULADA  ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR CHEQUE
+		ELSE
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.NOMBRE AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , BANCO  E,TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=2 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.BANCO=E.BANCO AND D.HEADERID=C.ID AND A.COMANDA=F.COMANDA AND !F.ANULADA  ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR CHEQUE1
+			
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.NOMBRE AS ENTIDAD,;
+			D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM hist_COMANDA A,FORMA_PAGO B, hist_DETALLE_FORMA_PAGO C , BANCO  E,hist_TIPO_PAGO_DETALLE D, Newfac F;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=2 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+			D.BANCO=E.BANCO AND D.HEADERID=C.ID AND A.COMANDA=F.COMANDA AND !F.ANULADA  ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR CHEQUE2
+			
+			SELECT * FROM cheque1 UNION all;
+			SELECT * FROM cheque2 INTO CURSOR cheque
+			
+		ENDIF
+		
+		
+
+
+	*!*		SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,(D.MONTO+D.PROPINA) AS MONTO,D.PROPINA,D.BOUCHER AS DOCUMENTO,E.NOMBRE AS ENTIDAD,;
+	*!*		D.V_COMISION,D.V_RETENCION AS V_RET,B.TIPO,B.ORDEN,F.FACTURA;
+	*!*		FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C , BANCO  E,TIPO_PAGO_DETALLE D, FACTURA F;
+	*!*		WHERE BETWEEN(A.FECHA,FECINI,FECFIN) AND A.COMANDA = C.COMANDA AND C.FORMA_PAGO=2 AND B.FORMA_PAGO=C.FORMA_PAGO AND;
+	*!*		D.BANCO=E.BANCO AND D.HEADERID=C.ID AND A.COMANDA=F.COMANDA AND !F.ANULADA  &xcad &xcad2 INTO CURSOR CHEQUE
+
+		*** LAS FORMAS DE PAGO QUE NO TIENEN DETALLE
+
+		IF xverhisto=0
+*!*				SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,IIF(c.forma_pago=12,C.MONTO+c.propina,c.monto) as monto,C.PROPINA,C.DOCUMENTO,;
+*!*				SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,F.FACTURA;
+*!*				FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C, Newfac F ;
+*!*				WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO<>2 AND C.FORMA_PAGO<>3 AND C.FORMA_PAGO<>6 ;
+*!*				AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+*!*				AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+*!*				&xcad &xcad2 &xfilcajapag;
+*!*				INTO CURSOR OTROS
+			
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,(C.MONTO+c.propina) as monto,C.PROPINA,C.DOCUMENTO,;
+			SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C, Newfac F ;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO<>2 AND C.FORMA_PAGO<>3 AND C.FORMA_PAGO<>6 AND C.FORMA_PAGO<>4;
+			AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+			AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad &xcad2 &xfilcajapag;
+			UNION ;
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,(C.MONTOTOT) as monto,C.PROPINA,C.DOCUMENTO,;
+			SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C, Newfac F ;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=4 ;
+			AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+			AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad &xcad2 &xfilcajapag;
+			UNION ;
+			SELECT A.FECHA,A.COMANDA,"EFECTIVO" AS DESC,(-1*C.CAMBIO) as monto,0000000000.00 AS PROPINA,C.DOCUMENTO,;
+			SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO ;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C, Newfac F ;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=4 ;
+			AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+			AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR OTROS
+		ELSE
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,IIF(c.forma_pago=12,C.MONTO+c.propina,c.monto) as monto,C.PROPINA,C.DOCUMENTO,;
+			SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C, Newfac F ;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO<>2 AND C.FORMA_PAGO<>3 AND C.FORMA_PAGO<>6 ;
+			AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+			AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR OTROS1
+			
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,IIF(c.forma_pago=12,C.MONTO+c.propina,c.monto) as monto,C.PROPINA,C.DOCUMENTO,;
+			SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,F.FACTURA,A.IDTOGO;
+			FROM hist_COMANDA A,FORMA_PAGO B, hist_DETALLE_FORMA_PAGO C, Newfac F ;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO<>2 AND C.FORMA_PAGO<>3 AND C.FORMA_PAGO<>6 ;
+			AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+			AND A.COMANDA=F.COMANDA AND !F.ANULADA ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR OTROS2
+			
+			SELECT * FROM otros1 UNION ALL;
+			SELECT * FROM otros2 INTO  CURSOR otros
+			
+		ENDIF
+
+		IF xverhisto=0
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,C.MONTO,C.PROPINA,C.DOCUMENTO,SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,;
+			0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,0 AS FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=6 AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR CORTESIA
+		ELSE
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,C.MONTO,C.PROPINA,C.DOCUMENTO,SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,;
+			0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,0 AS FACTURA,A.IDTOGO;
+			FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=6 AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR CORTESIA1
+			
+			SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,C.MONTO,C.PROPINA,C.DOCUMENTO,SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,;
+			0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,0 AS FACTURA,A.IDTOGO;
+			FROM hist_COMANDA A,FORMA_PAGO B, hist_DETALLE_FORMA_PAGO C;
+			WHERE A.COMANDA = C.COMANDA AND C.FORMA_PAGO=6 AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+			&xcad &xcad2 &xfilcajapag;
+			INTO CURSOR CORTESIA2
+			
+			SELECT * FROM cortesia1 UNION all;
+			SELECT * FROM cortesia2 INTO CURSOR cortesia
+			
+		ENDIF
+		
+	*!*		SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,IIF(c.forma_pago=12,C.MONTO+c.propina,c.monto) as monto,C.PROPINA,C.DOCUMENTO,;
+	*!*		SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,F.FACTURA;
+	*!*		FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C, FACTURA F ;
+	*!*		WHERE BETWEEN(A.FECHA,FECINI,FECFIN) AND A.COMANDA = C.COMANDA AND C.FORMA_PAGO<>2 AND C.FORMA_PAGO<>3 AND C.FORMA_PAGO<>6 ;
+	*!*		AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+	*!*		AND A.COMANDA=F.COMANDA AND !F.ANULADA &xcad &xcad2;
+	*!*		INTO CURSOR OTROS
+
+	*!*		SELECT A.FECHA,A.COMANDA,B.DESCRIPCION AS DESC,C.MONTO,C.PROPINA,C.DOCUMENTO,SPACE(100) AS ENTIDAD,0000000000.00 AS V_COMISION,;
+	*!*		0000000000.00 AS  V_RET,B.TIPO,B.ORDEN,0 AS FACTURA;
+	*!*		FROM COMANDA A,FORMA_PAGO B, DETALLE_FORMA_PAGO C;
+	*!*		WHERE BETWEEN(A.FECHA,FECINI,FECFIN) AND A.COMANDA = C.COMANDA AND C.FORMA_PAGO=6 AND B.FORMA_PAGO=C.FORMA_PAGO  ;
+	*!*		&xcad &xcad2;
+	*!*		INTO CURSOR CORTESIA
+		
+		SELECT * FROM TARJETAMASTER UNION ALL;
+		SELECT * FROM TARJETAVISA UNION ALL;
+		SELECT * FROM CHEQUE UNION ALL;
+		SELECT * FROM CORTESIA UNION ALL;
+		SELECT * FROM OTROS INTO DBF CIERRECAJA ORDER BY 10,3,1
+
+		SELECT a.monto, B.domicilio FROM cierrecaja a INNER JOIN cmdlleva b ON a.comanda=b.comanda WHERE !EMPTY(a.idtogo) AND b.domicilio=1 AND a.tipo<>2 INTO CURSOR cv_domicilio
+		SELECT cv_domicilio
+		SUM ALL cv_domicilio.monto TO xventa_domicilio
+		
+		SELECT a.monto, B.domicilio FROM cierrecaja a INNER JOIN cmdlleva b ON a.comanda=b.comanda WHERE !EMPTY(a.idtogo) AND b.domicilio=0 AND a.tipo<>2 INTO CURSOR cv_pasatraer
+		SELECT cv_pasatraer
+		SUM ALL cv_pasatraer.monto TO xventa_traer
+		
+		SELECT a.monto FROM cierrecaja a WHERE EMPTY(a.idtogo) AND tipo<>2 INTO CURSOR cv_restaurante
+		SELECT cv_restaurante
+		SUM ALL cv_restaurante.monto TO xventa_rest
+		
+		SELECT CIERRECAJA
+		
+		PUBLIC CANTPER
+		SELECT COMENSALES FROM COMANDA WHERE BETWEEN(FECHA,FECINI,FECFIN)INTO CURSOR CURPER
+		SUM ALL COMENSALES TO CANTPER
+		
+		*** CREA CURSOR PARA MOSTRAR TODAS LAS FORMAS DE PAGO SIN IMPORTAR SI TIENEN MOVIMIENTO
+		CREATE CURSOR RES_CAJA (DESCRIPCION C(50),MONTO N(10,2),PROPINA N(10,2),V_COMISION N(10,2),V_RETENCION N(10,2),TIPO N(1), ORDEN N(2))	
+		SELECT * FROM FORMA_PAGO  INTO CURSOR CURFPAGO ORDER BY TIPO,ORDEN
+		
+*!*			SELECT RES_CAJA
+*!*			APPEND BLANK
+*!*			replace descripcion WITH "SALDO INICIAL"
+*!*			replace tipo WITH 1
+*!*			replace orden WITH 0
+		
+		SELECT CURFPAGO
+		SCAN
+			IF CURFPAGO.FORMA_PAGO=3
+				SELECT RES_CAJA
+				APPEND BLANK 
+				REPLACE DESCRIPCION WITH "MASTERCARD"
+				REPLACE TIPO WITH CURFPAGO.TIPO
+				SELECT RES_CAJA
+				APPEND BLANK 
+				REPLACE DESCRIPCION WITH "VISA NET"
+				REPLACE TIPO WITH CURFPAGO.TIPO
+				REPLACE ORDEN WITH CURFPAGO.ORDEN
+			ELSE
+				SELECT RES_CAJA
+				APPEND BLANK 
+				REPLACE DESCRIPCION WITH CURFPAGO.DESCRIPCION
+				REPLACE TIPO WITH CURFPAGO.TIPO
+				REPLACE ORDEN WITH CURFPAGO.ORDEN
+			ENDIF
+
+		ENDSCAN
+		
+*!*			SELECT RES_CAJA
+*!*			APPEND BLANK
+*!*			replace descripcion WITH "RETIRO"
+*!*			replace tipo WITH 2
+*!*			replace orden WITH 99
+		*******************************************************************************************
+		
+		eferet=0.00
+		cheret=0.00
+		tarret=0.00
+		otrret=0.00
+		totret=0.00
+		
+		efefin=0.00
+		chefin=0.00
+		tarfin=0.00
+		otrfin=0.00
+		totfin=0.00
+		
+		totini=0.00
+		
+		IF !SDETALLE
+			SELECT SUM(total-(cheque+tarjeta+otros)) as totalef,SUM(cheque) as totalche, SUM(tarjeta) as totaltar, SUM(otros) as totalotr FROM losretiros INTO CURSOR losretirosres
+			SELECT losretirosres
+			IF !EOF()
+				STORE losretirosres.totalef TO eferet
+				STORE losretirosres.totalche TO cheret
+				STORE losretirosres.totaltar TO tarret
+				STORE losretirosres.totalotr TO otrret
+				STORE (losretirosres.totalef+losretirosres.totalche+losretirosres.totaltar+losretirosres.totalotr) TO totret
+			ENDIF
+			
+			SELECT SUM(total) as total FROM elsaldoini INTO CURSOR elsaldoinires
+			SELECT elsaldoinires
+			IF !EOF()
+				STORE elsaldoinires.total TO totini
+			ENDIF
+			
+			SELECT SUM(total-(cheque+tarjeta+otros)) as totalef,SUM(cheque) as totalche, SUM(tarjeta) as totaltar, SUM(otros) as totalotr FROM elsaldofin INTO CURSOR elsaldofinres
+			SELECT elsaldofinres
+			IF !EOF()
+				STORE elsaldofinres.totalef TO efefin
+				STORE elsaldofinres.totalche TO chefin
+				STORE elsaldofinres.totaltar TO tarfin
+				STORE elsaldofinres.totalotr TO otrfin
+				STORE (elsaldofinres.totalef+elsaldofinres.totalche+elsaldofinres.totaltar+elsaldofinres.totalotr) TO totfin
+			ENDIF
+			
+			xcoment_corte=""
+*!*				SELECT elsaldoinires
+*!*				SELECT RES_CAJA
+*!*				LOCATE FOR ALLTRIM(descripcion)==ALLTRIM("SALDO INICIAL")
+*!*				IF FOUND()
+*!*					replace monto WITH elsaldoinires.total
+*!*					replace propina WITH 0.00
+*!*					replace v_comision WITH 0.00
+*!*					replace v_retencion WITH 0.00
+*!*				ENDIF
+			
+			SELECT DESC,SUM(MONTO) AS MONTO,SUM(PROPINA) AS PROPINA,SUM(V_COMISION) AS V_COMISION,SUM(V_RET) AS V_RET,TIPO FROM CIERRECAJA INTO CURSOR CIERRE_CAJA_RES GROUP BY TIPO,DESC ORDER BY TIPO,DESC 
+			
+*			SET STEP ON 
+			
+			SELECT CIERRE_CAJA_RES
+			SCAN
+				SELECT RES_CAJA
+				LOCATE FOR ALLTRIM(DESCRIPCION)==ALLTRIM(CIERRE_CAJA_RES.DESC)
+				IF FOUND()
+					REPLACE MONTO WITH CIERRE_CAJA_RES.MONTO
+					REPLACE PROPINA WITH CIERRE_CAJA_RES.PROPINA
+					REPLACE V_COMISION WITH CIERRE_CAJA_RES.V_COMISION
+					REPLACE V_RETENCION WITH CIERRE_CAJA_RES.V_RET
+				ENDIF				
+			ENDSCAN
+			
+*!*				SELECT losretirosres
+*!*				SELECT RES_CAJA
+*!*				LOCATE FOR ALLTRIM(descripcion)==ALLTRIM("RETIRO")
+*!*				IF FOUND()
+*!*					replace monto WITH losretirosres.total
+*!*					replace propina WITH 0.00
+*!*					replace v_comision WITH 0.00
+*!*					replace v_retencion WITH 0.00
+*!*				ENDIF
+			
+			efecuadre=0.00
+			checuadre=0.00
+			tarcuadre=0.00
+			otrcuadre=0.00
+			totcuadre=0.00
+			
+			SELECT RES_CAJA
+			SCAN
+				DO CASE
+					CASE ALLTRIM(DESCRIPCION)==ALLTRIM("EFECTIVO")
+						efecuadre=efecuadre+RES_CAJA.monto &&+RES_CAJA.propina
+						totcuadre=totcuadre+RES_CAJA.monto &&+RES_CAJA.propina
+						
+					CASE ALLTRIM(DESCRIPCION)==ALLTRIM("CHEQUE")
+						checuadre=checuadre+RES_CAJA.monto &&+RES_CAJA.propina
+						totcuadre=totcuadre+RES_CAJA.monto &&+RES_CAJA.propina
+						
+					CASE ALLTRIM(DESCRIPCION)==ALLTRIM("MASTERCARD") OR ALLTRIM(DESCRIPCION)==ALLTRIM("VISA NET")
+						tarcuadre=tarcuadre+RES_CAJA.monto &&+RES_CAJA.propina
+						totcuadre=totcuadre+RES_CAJA.monto &&+RES_CAJA.propina
+						
+					OTHERWISE
+						IF ALLTRIM(DESCRIPCION)==ALLTRIM("DOLARES")
+							otrcuadre=otrcuadre+RES_CAJA.monto &&+RES_CAJA.propina
+							totcuadre=totcuadre+RES_CAJA.monto &&+RES_CAJA.propina
+						ENDIF
+						
+				ENDCASE
+			ENDSCAN
+			
+			*----* Cuadrar total
+			IF totfin=(totcuadre+totini)-totret
+				xcoment_tot=1
+			ELSE
+				xcoment_tot=0
+			ENDIF
+			
+			*----* Cuadrar efectivo
+			IF efefin=(efecuadre+totini)-eferet
+				xcoment_efe=1
+			ELSE
+				xcoment_efe=0
+			ENDIF
+			
+			*----* Cuadrar cheque
+			IF chefin=(checuadre-cheret)
+				xcoment_che=1
+			ELSE
+				xcoment_che=0
+			ENDIF
+			
+			*----* Cuadrar tarjeta
+			IF tarfin=(tarcuadre-tarret)
+				xcoment_tar=1
+			ELSE
+				xcoment_tar=0
+			ENDIF
+			
+			*----* Cuadrar otros
+			IF otrfin=(otrcuadre-otrret)
+				xcoment_otr=1
+			ELSE
+				xcoment_otr=0
+			ENDIF
+			
+			SELECT RES_CAJA
+				
+*!*				REPORT FORM cierre_caja_RES TO PRINTER PREVIEW 
+			DO FORM imprime WITH "cierre_caja_res"
+		ELSE
+			*** VERIFICA QUE FORMAS DE PAGO NO TUVIERON MOVIMIENTO E INSERTA UNA LINEA PARA LAS MISMAS
+			SELECT * FROM RES_CAJA WHERE DESCRIPCION NOT IN (SELECT DISTINCT DESC FROM CIERRECAJA) INTO CURSOR FPAGONOT
+			SELECT FPAGONOT
+			SCAN
+				SELECT CIERRECAJA 
+				APPEND BLANK
+				REPLACE DESC WITH FPAGONOT.DESCRIPCION
+				REPLACE TIPO WITH FPAGONOT.TIPO
+				REPLACE ORDEN WITH FPAGONOT.ORDEN
+			ENDSCAN
+			SELECT CIERRECAJA
+			SELECT * FROM CIERRECAJA INTO CURSOR CIERRECAJA2 ORDER BY 10,3,1
+			SELECT CIERRECAJA2
+			*REPORT FORM cierre_caja TO PRINTER PREVIEW 
+			DO FORM imprime WITH "cierre_caja"
+		ENDIF
+	ENDIF
+	
+CLOSE all

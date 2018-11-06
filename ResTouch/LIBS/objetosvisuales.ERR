@@ -1,0 +1,214 @@
+ForeColor = 192,192,192
+Error in line 10: Syntax error.
+olecontrol
+Error in line 20: Unrecognized command verb.
+olecontrol
+Error in line 21: Unrecognized command verb.
+olecontrol
+Error in line 29: Unrecognized command verb.
+olecontrol
+Error in line 30: Unrecognized command verb.
+ForeColor = 0,0,0
+Error in line 45: Syntax error.
+BackColor = 174,215,255
+Error in line 50: Syntax error.
+control_texto = 
+Error in line 51: Syntax error.
+titulotexto = 
+Error in line 52: Syntax error.
+tablatexto = 
+Error in line 53: Syntax error.
+·
+Error in line 58: Unrecognized command verb.
+ForeColor = 255,255,255
+Error in line 72: Syntax error.
+BackColor = 0,0,128
+Error in line 73: Syntax error.
+BackColor = 0,0,128
+Error in line 78: Syntax error.
+texto = 
+Error in line 79: Syntax error.
+titulo = 
+Error in line 80: Syntax error.
+ForeColor = 0,0,64
+Error in line 89: Syntax error.
+BackColor = 254,252,214
+Error in line 90: Syntax error.
+ForeColor = 128,0,64
+Error in line 100: Syntax error.
+BackColor = 227,237,249
+Error in line 101: Syntax error.
+titulo
+Error in line 104: Unrecognized command verb.
+titulotexto
+Error in line 106: Unrecognized command verb.
+tablatexto
+Error in line 107: Unrecognized command verb.
+Picture = ..\bmps\azulsuave.jpg
+Error in line 113: Syntax error.
+ForeColor = 255,243,232
+Error in line 132: Syntax error.
+BackColor = 0,0,128
+Error in line 133: Syntax error.
+ForeColor = 128,0,0
+Error in line 144: Syntax error.
+this.label1.caption=this.titulotexto
+Error in line 153: Statement is not in a procedure.
+this.text1.controlsource=this.Control_texto
+Error in line 154: Statement is not in a procedure.
+ENDPROC
+Error in line 156: Nesting error.
+·
+Error in line 158: Unrecognized command verb.
+ÖØ¿B*çß!C4
+Error in line 159: Unrecognized command verb.
+˝˘=
+Error in line 174: Unrecognized command verb.
+
+Error in line 177: Unrecognized command verb.
+
+Error in line 178: Unrecognized command verb.
+
+Error in line 179: Unrecognized command verb.
+
+Error in line 180: Unrecognized command verb.
+
+Error in line 181: Unrecognized command verb.
+
+Error in line 182: Unrecognized command verb.
+LPARAMETERS node
+Error in line 188: Statement is not in a procedure.
+ENDPROC
+Error in line 191: Nesting error.
+˝˘S
+Error in line 253: Unrecognized command verb.
+˝˘Ì
+Error in line 255: Unrecognized command verb.
+˝˘˛
+Error in line 256: Unrecognized command verb.
+˝˘Ù˛/
+Error in line 260: Unrecognized command verb.
+˝˘n˛5
+Error in line 263: Unrecognized command verb.
+PUBLIC a_ejecutar
+Error in line 274: Statement is not in a procedure.
+STORE "" TO a_ejecutar
+Error in line 275: Statement is not in a procedure.
+this.olecontrol1.style= 7  
+Error in line 276: Statement is not in a procedure.
+IF !USED("imagenes")
+Error in line 278: Statement is not in a procedure.
+USE imagenes IN 0
+Error in line 279: Statement is not in a procedure.
+endif
+Error in line 280: Statement is not in a procedure.
+SELECT imagenes
+Error in line 282: Statement is not in a procedure.
+SCAN
+Error in line 283: Statement is not in a procedure.
+STORE img_path+"\"+ALLTRIM(archivo) TO ubicacion
+Error in line 284: Statement is not in a procedure.
+this.olecontrol2.ListImages.Add(,ALLTRIM(nombre),LoadPicture(ubicacion))
+Error in line 285: Statement is not in a procedure.
+SELECT imagenes
+Error in line 291: Statement is not in a procedure.
+ENDSCAN 
+Error in line 292: Statement is not in a procedure.
+this.olecontrol1.ImageList = this.olecontrol2
+Error in line 293: Statement is not in a procedure.
+SELECT imagenes
+Error in line 295: Statement is not in a procedure.
+use
+Error in line 296: Statement is not in a procedure.
+IF !USED("Menu")
+Error in line 299: Statement is not in a procedure.
+USE Menu IN 0
+Error in line 300: Statement is not in a procedure.
+ENDIF
+Error in line 301: Statement is not in a procedure.
+IF !USED("Sys03")
+Error in line 302: Statement is not in a procedure.
+USE Sys03 IN 0
+Error in line 303: Statement is not in a procedure.
+ENDIF
+Error in line 304: Statement is not in a procedure.
+SELECT Menu
+Error in line 306: Statement is not in a procedure.
+SCAN
+Error in line 307: Statement is not in a procedure.
+SELECT sys03
+Error in line 308: Statement is not in a procedure.
+LOCATE FOR ALLTRIM(idusuario)=ALLTRIM(susuario) AND UPPER(ALLTRIM(idprograma))==UPPER(ALLTRIM(MENU.nombrenodo))
+Error in line 309: Statement is not in a procedure.
+IF EOF()
+Error in line 310: Statement is not in a procedure.
+encontrado=.f.
+Error in line 311: Statement is not in a procedure.
+ELSE
+Error in line 312: Statement is not in a procedure.
+encontrado=.t.
+Error in line 313: Statement is not in a procedure.
+ENDIF
+Error in line 314: Statement is not in a procedure.
+SELECT menu
+Error in line 315: Statement is not in a procedure.
+IF tipo=ParamTipoMenu AND Encontrado
+Error in line 316: Statement is not in a procedure.
+IF EMPTY(padre)
+Error in line 317: Statement is not in a procedure.
+IF NOT EMPTY(imagen)
+Error in line 318: Statement is not in a procedure.
+this.olecontrol1.Nodes.Add(,,ALLTRIM(nombrenodo),ALLTRIM(proper(texto)),ALLTRIM(imagen),"flecha")
+Error in line 319: Statement is not in a procedure.
+ELSE
+Error in line 320: Statement is not in a procedure.
+this.olecontrol1.Nodes.Add(,,ALLTRIM(nombrenodo),ALLTRIM(PROPER(texto)))
+Error in line 321: Statement is not in a procedure.
+ENDIF 
+Error in line 322: Statement is not in a procedure.
+ELSE
+Error in line 323: Statement is not in a procedure.
+IF NOT EMPTY(imagen)
+Error in line 324: Statement is not in a procedure.
+this.olecontrol1.Nodes.Add(ALLTRIM(padre),4,ALLTRIM(nombrenodo),ALLTRIM(Proper(texto)),ALLTRIM(imagen),"flecha")
+Error in line 325: Statement is not in a procedure.
+ELSE
+Error in line 326: Statement is not in a procedure.
+this.olecontrol1.Nodes.Add(ALLTRIM(padre),4,ALLTRIM(nombrenodo),ALLTRIM(Proper(texto)))
+Error in line 327: Statement is not in a procedure.
+ENDIF 
+Error in line 328: Statement is not in a procedure.
+ENDIF 
+Error in line 329: Statement is not in a procedure.
+Endif
+Error in line 330: Statement is not in a procedure.
+SELECT Menu
+Error in line 331: Statement is not in a procedure.
+ENDSCAN 
+Error in line 332: Statement is not in a procedure.
+ENDPROC
+Error in line 335: Nesting error.
+Left = 0
+Error in line 337: Statement is not in a procedure.
+Height = 661
+Error in line 338: Statement is not in a procedure.
+Width = 363
+Error in line 339: Statement is not in a procedure.
+DoCreate = .T.
+Error in line 340: Statement is not in a procedure.
+Picture = ..\bmps\dibujoaa2.bmp
+Error in line 341: Syntax error.
+BorderStyle = 3
+Error in line 342: Statement is not in a procedure.
+Caption = "Form"
+Error in line 343: Statement is not in a procedure.
+TitleBar = 0
+Error in line 344: Statement is not in a procedure.
+WindowType = 0
+Error in line 345: Statement is not in a procedure.
+ForeColor = 0,0,255
+Error in line 346: Syntax error.
+BackColor = 98,140,191
+Error in line 347: Syntax error.
+Name = "arbol"
+Error in line 348: Statement is not in a procedure.

@@ -1,0 +1,17 @@
+SELECT *,COUNT(*) as tot FROM cliente ORDER BY nit GROUP BY nit HAVING tot>1 INTO CURSOR dup 
+
+
+
+SELECT dup
+brow
+SCAN
+	SELECT cliente
+	LOCATE FOR ALLTRIM(nit)==ALLTRIM(dup.nit)
+	IF FOUND()
+		DELETE
+	ENDIF
+	SELECT dup
+ENDSCAN
+
+
+

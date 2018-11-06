@@ -1,0 +1,15 @@
+PROCEDURE Meses
+	DIMENSION M(1,12)
+ STORE "Enero" TO M(1,1)
+ STORE "Febrero" TO M(1,2)
+ STORE "Marzo" TO M(1,3)
+ STORE "Abril" TO M(1,4)
+ STORE "Mayo" TO M(1,5)
+ STORE "Junio" TO M(1,6)
+ STORE "Julio" TO M(1,7)
+ STORE "Agosto" TO M(1,8)
+ STORE "Septiembre" TO M(1,9)
+ STORE "Octubre" TO M(1,10)
+ STORE "Noviembre" TO M(1,11)
+ STORE "Diciembre" TO M(1,12)
+Return

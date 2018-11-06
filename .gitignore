@@ -1,0 +1,32 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+#Ignorar todo
+*
+
+#Esta sección es solo para ResTouch
+#Solamente estas carpetas
+!ResTouch
+!ResTouch/*
+!ResTouch/Bmps/*
+!ResTouch/FORMS/*
+!ResTouch/ICONOS/*
+!ResTouch/imgs/*
+!ResTouch/LIBS/*
+!ResTouch/LIBS/backup/*
+!ResTouch/MENU/*
+!ResTouch/PNG/*
+!ResTouch/PRGS/*
+!ResTouch/REPORS/*
+
+#Quitar/permitir algunos tipos de archivos específicos
+ResTouch/*.exe
+ResTouch/*.zip
+ResTouch/*.BAK
+ResTouch/*.pdf
+ResTouch/*.html
+ResTouch/*.xls
+ResTouch/*.xlsx
+!ResTouch/restouch.exe
+!ResTouch/RESTOUCH.exe
+!.gitignore
+!README.md

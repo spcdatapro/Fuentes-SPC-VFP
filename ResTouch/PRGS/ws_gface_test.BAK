@@ -1,0 +1,184 @@
+LOCAL area
+	area = SELECT(0)
+
+SET STEP ON 	
+SET SAFETY OFF 
+
+LOCAL lxml
+	lxml = ""
+	
+TEXT TO lxml ADDITIVE NOSHOW TEXT PRETEXT 7
+<?xml version="1.0" encoding="UTF-8"?>
+<FactDocGT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.fact.com.mx/schema/gt http://www.mysuitemex.com/fact/schema/fx_2013_gt_3.xsd"
+xmlns="http://www.fact.com.mx/schema/gt">
+<Version>3</Version>
+<Procesamiento>
+<Dictionary name="email">
+<Entry k="from" v="servicios@efactura.com.gt"/>
+<Entry k="to" v="juanfranciscoajcip@gmail.com"/>
+<Entry k="formats" v="xml pdf html"/>
+</Dictionary>
+</Procesamiento>
+<Encabezado>
+<TipoActivo>FACE63</TipoActivo>
+<CodigoDeMoneda>GTQ</CodigoDeMoneda>
+<TipoDeCambio>1.0000</TipoDeCambio>
+<InformacionDeRegimenIsr>RET_DEFINITIVA</InformacionDeRegimenIsr>
+</Encabezado>
+<Vendedor>
+<Nit>71791140</Nit>
+<Idioma>es</Idioma>
+<CodigoDeEstablecimiento>3</CodigoDeEstablecimiento>
+<DispositivoElectronico>001</DispositivoElectronico>
+</Vendedor>
+<Comprador>
+<Nit>CF</Nit>
+<NombreComercial>CONSUMIDOR FINAL</NombreComercial>
+<DireccionComercial>
+<Direccion1>Ciudad</Direccion1>
+<Municipio>Guatemala</Municipio>
+<Departamento>Guatemala</Departamento>
+<CodigoDePais>GT</CodigoDePais>
+</DireccionComercial>
+<Idioma>es</Idioma>
+</Comprador>
+<Detalles><Detalle>
+<Descripcion>PEPSI LATA</Descripcion>
+<CodigoEAN>00000000000000</CodigoEAN>
+<UnidadDeMedida>UNI</UnidadDeMedida>
+<Cantidad>1.000</Cantidad>
+<ValorSinDR>
+<Precio>3.34821</Precio>
+<Monto>3.34821</Monto>
+</ValorSinDR>
+<DescuentosYRecargos>
+<SumaDeDescuentos>0.00</SumaDeDescuentos>
+<DescuentoORecargo>
+<Operacion>DESCUENTO</Operacion>
+<Servicio>ALLOWANCE_GLOBAL</Servicio>
+<Base>3.34821</Base>
+<Tasa>0</Tasa>
+<Monto>0</Monto>
+</DescuentoORecargo>
+</DescuentosYRecargos>
+<ValorConDR>
+<Precio>3.34821</Precio>
+<Monto>3.34821</Monto>
+</ValorConDR>
+<Impuestos>
+<TotalDeImpuestos>0.40179</TotalDeImpuestos>
+<IngresosNetosGravados>3.34821</IngresosNetosGravados>
+<TotalDeIVA>0.40179</TotalDeIVA>
+<Impuesto>
+<Tipo>IVA</Tipo>
+<Base>3.34821</Base>
+<Tasa>12.00</Tasa>
+<Monto>0.40179</Monto>
+</Impuesto>
+</Impuestos>
+<Categoria>Bien</Categoria>
+</Detalle></Detalles>
+<Totales>
+<SubTotalSinDR>3.34821</SubTotalSinDR>
+<DescuentosYRecargos>
+<SumaDeDescuentos>0.00</SumaDeDescuentos>
+<DescuentoORecargo>
+<Operacion>DESCUENTO</Operacion>
+<Servicio>ALLOWANCE_GLOBAL</Servicio>
+<Base>3.34821</Base>
+<Tasa>0.00</Tasa>
+<Monto>0.00</Monto>
+</DescuentoORecargo>
+</DescuentosYRecargos>
+<SubTotalConDR>3.34821</SubTotalConDR>
+<Impuestos>
+<TotalDeImpuestos>0.40179</TotalDeImpuestos>
+<IngresosNetosGravados>3.34821</IngresosNetosGravados>
+<TotalDeIVA>0.40179</TotalDeIVA>
+<Impuesto>
+<Tipo>IVA</Tipo>
+<Base>3.34821</Base>
+<Tasa>12.00</Tasa>
+<Monto>0.40179</Monto>
+</Impuesto>
+</Impuestos>
+<Total>3.75</Total>
+<TotalLetras>TRES CON 75/100</TotalLetras>
+</Totales>
+<TextosDePie>
+<Texto>GRACIAS POR SU COMPRA</Texto>
+</TextosDePie>
+</FactDocGT>
+ENDTEXT
+
+LOCAL loSoapClient, loSoapClientUrl
+ 
+*!* Creando web Service
+loSoapClient   = CREATEOBJECT("MSSOAP.SoapClient30")
+loSoapClientUrl  = [https://gface.efactura.com.gt/mx.com.fact.wsfront/FactWSFront.asmx?wsdl]
+  
+IF VARTYPE(loSoapClient)=='O'
+	TRY 
+ 	loSoapClient.MSSoapInit(loSoapClientUrl)
+
+	LOCAL lRequestor, lTransaction, lCountry, lEntity, lUser, lUserName, lData1, lData2, lData3
+		lRequestor = "3b2369f8-e80f-4dc4-9cf2-ca3cf5dabfe0"
+		lTransaction = "CONVERT_NATIVE_XML"
+		lCountry = "GT"
+		lEntity = "71791140"
+		lUser = "3b2369f8-e80f-4dc4-9cf2-ca3cf5dabfe0"
+		lUsername = "71791140"
+		lData1 = lxml
+		lData2 = "PDF HTML XML"
+		lData3 = ""
+	
+	LOCAL lo_result AS OBJECT
+	LOCAL lc_xml AS STRING
+	lo_result = null
+	lc_xml = ''
+
+	lo_result  = loSoapClient.RequestTransaction(lRequestor,lTransaction,lCountry,lEntity,lUser,lUserName,lData1,lData2,lData3)
+
+	lc_xml = lo_result.ITEM(0).PARENTNODE.XML 
+
+	IF USED("cResult")
+		USE IN cResult
+	ENDIF
+	
+	IF !EMPTY(lc_xml)
+	    ** Convertimos el XML devuelto en un cursor temporal
+		 XMLTOCURSOR(lc_xml,'cResult')
+		 SELECT cResult
+		 *BROWSE
+		GO BOTT
+		*- Elimina archivos existentes		
+		DELETE FILE gface.pdf
+		DELETE FILE gface.html
+		DELETE FILE gface.xml
+		
+		*- Genera archivos devueltos por GFACE
+		STRTOFILE(STRCONV(responsedata3, 14),"gface.pdf")
+		STRTOFILE(STRCONV(responsedata2, 14),"gface.html")
+		STRTOFILE(STRCONV(responsedata1, 14),"gface.xml")
+
+		*- Imprime factura formato PDF
+		IF FILE("gface.pdf")
+			mPrinterName = "EPSON TM-T20II Receipt5"
+			mFileName = "C:\spc\restouch\gface.pdf"
+			mRunCmd = "RUN /N C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe /n /h /t "+mFileName+" "+mPrinterName
+			&mRunCmd 
+		ENDIF
+		
+	ENDIF
+	
+	** Destruye objetos
+	loSoapClient = null
+	lo_result = null
+	lc_xml = ""
+	
+	CATCH TO err
+		MESSAGEBOX("Existe un error de comunicación al servidor: "+ALLTRIM(err.message),0+48,"POS")
+	ENDTRY
+
+ENDIF 
